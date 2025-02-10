@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: az-app
+
+  h2:
+    console:
+      enabled: true
+
+  datasource:
+    url: jdbc:h2:mem:az-app
+
+  mvc:
+    problemdetails:
+      enabled: true
+
+management:
+  endpoints:
+    access:
+      default: none
+    web:
+      exposure:
+        include: health, metrics
+  endpoint:
+    health:
+      access: read_only
+      probes:
+        enabled: true
+    metrics:
+      access: read_only
