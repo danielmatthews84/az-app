@@ -21,7 +21,7 @@ import java.util.UUID;
 public class OrderEntity {
 
     @Id
-    private UUID id;
+    private UUID id; // UUID as PK might be preferrable in a distributed system/db over a sequential number
 
     private String title;
 

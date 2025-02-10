@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Builder
 public record OrderDetails(
-        @NotBlank
+        @NotBlank // bean validation used for capturing errors with the input
         String title,
 
         @NotBlank
@@ -20,5 +20,5 @@ public record OrderDetails(
         @NotBlank
         String lastName,
 
-        Optional<@Past LocalDate> dateOfBirth) {
+        Optional<@Past LocalDate> dateOfBirth) { // optional used here to represent non-mandatory values
 }

@@ -7,19 +7,27 @@ spring:
       enabled: true
 
   datasource:
+    # in-memory db not recommended for production. Better to use a local copy of the target db and override settings
+    # with spring profiles e.g. application-local.yaml OR environment variables set on the container/server
     url: jdbc:h2:mem:az-app
 
   mvc:
+    # enable support for RFC 9457 - Problem Details for HTTP APIs. TODO: Implement a standard exception handler
+    # to ensure that client and server errors are handled and logged correctly along with any IDs required for
+    # support calls in prod.
     problemdetails:
       enabled: true
 
+# enable health (including k8s liveness/readiness endpoints) and metric endpoints for ingestion into a cloud platform
+# depending on the cloud provider we should bootstrap the integration services e.g. the Java agent for Azure App Insights
+# or GCP integration libs etc...
 management:
   endpoints:
     access:
       default: none
     web:
       exposure:
-        include: health, metrics
+        include: health, metrics # no need to expose these web endpoints in prod
   endpoint:
     health:
       access: read_only
@@ -27,3 +35,9 @@ management:
         enabled: true
     metrics:
       access: read_only
+      # we could use micrometer to capture any custom metrics that we might need for SLOs/SLAs.
+
+# include spring security oauth2 resource server support and configure to verify JWT/access-tokens against the public
+# keys in the OIDC providers JWKS
+
+# should configure structured logging in JSON format for when deployed in the cloud. This will make debugging issues easier in prod.

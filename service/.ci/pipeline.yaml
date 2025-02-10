@@ -1,0 +1,10 @@
+# Provide a pipeline (depending on the CI server) that does the following:
+# Compile the service
+# Run any tests
+# Build a Docker image
+# Publish the image to a container registry
+# And potentially deploy to a dev/test environment
+
+# Would need to consider PR based builds where we don't want to build an image possibly nor deploy.
+
+# Need to think about gated environment deployments e.g. UAT and prod.
