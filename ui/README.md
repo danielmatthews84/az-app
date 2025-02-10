@@ -1,3 +1,8 @@
 # az-ui
 
-TODO: Provide some useful info
+## How to build and run
+
+`npm run build` Create a production build
+`npm run dev` Starts vite dev server
+
+navigate to http://localhost:5173

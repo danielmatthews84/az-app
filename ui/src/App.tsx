@@ -4,6 +4,9 @@ import {Stack, FormControl, InputLabel, TextField, Button, Select, MenuItem} fro
 
 function App() {
 
+    // AuthN could be configured using an OIDC provider. The app would be responsible for caching the access tokens and refresh tokens
+
+    // Use Formik to manage form submission and state more easily
     const formik = useFormik({
         initialValues: {
             title: '',
@@ -17,6 +20,7 @@ function App() {
         }
     });
 
+    // Using Material-UI as the component library
     return (
         <>
             <h1>Order Form</h1>
