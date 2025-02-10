@@ -2,8 +2,12 @@ package com.example.az.app.service;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -11,6 +15,9 @@ import java.util.UUID;
 @Entity
 @Table(name = "orders")
 @Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderEntity {
 
     @Id
@@ -24,17 +31,8 @@ public class OrderEntity {
 
     private LocalDate dateOfBirth;
 
-    protected OrderEntity() {
-    }
-
-    public OrderEntity(String title,
-                       String firstName,
-                       String lastName,
-                       LocalDate dateOfBirth) {
+    @PrePersist
+    public void prePersist() {
         id = UUID.randomUUID();
-        this.title = title;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
     }
 }

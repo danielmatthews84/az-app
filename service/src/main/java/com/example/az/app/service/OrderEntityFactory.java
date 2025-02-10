@@ -8,11 +8,11 @@ public final class OrderEntityFactory {
     }
 
     public static OrderEntity create(OrderDetails orderDetails) {
-        return new OrderEntity(
-                orderDetails.title(),
-                orderDetails.firstName(),
-                orderDetails.lastName(),
-                orderDetails.dateOfBirth().orElse(null)
-        );
+        return OrderEntity.builder()
+                .title(orderDetails.title())
+                .firstName(orderDetails.firstName())
+                .lastName(orderDetails.lastName())
+                .dateOfBirth(orderDetails.dateOfBirth().orElse(null))
+                .build();
     }
 }
